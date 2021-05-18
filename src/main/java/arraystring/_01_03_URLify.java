@@ -14,24 +14,20 @@ class _01_03_URLify {
     char[] urlify(char[] chars, int trueLength) {
         int spaces = 0;
         for (int i = 0; i < trueLength; i++) {
-            if (chars[i] == ' ') {
-                spaces++;
-            }
+            if (chars[i] == ' ') spaces++;
         }
 
-        if (spaces * 2 + trueLength != chars.length) {
-            throw new IllegalArgumentException("Given chars is not big enough to hold all chars");
-        }
-
-        for (int i = trueLength - 1, j = chars.length - 1; i >= 0; i--) {
+        int newLength = trueLength + 2 * spaces;
+        char[] charsNew = new char[newLength];
+        for (int i = trueLength - 1 ; i >= 0; i--) {
             if (chars[i] == ' ') {
-                chars[j--] = '0';
-                chars[j--] = '2';
-                chars[j--] = '%';
+                charsNew[--newLength] =  '0';
+                charsNew[--newLength] =  '2';
+                charsNew[--newLength] =  '%';
             } else {
-                chars[j--] = chars[i];
+                charsNew[--newLength] = chars[i];
             }
         }
-        return chars;
+        return charsNew;
     }
 }

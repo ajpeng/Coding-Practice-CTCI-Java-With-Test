@@ -7,10 +7,25 @@ package arraystring;
  */
 class _01_09_StringRotation {
     boolean rotated(String original, String result) {
-        return original.length() == result.length() && isSubstring((original + original), result);
+        if (original.length() != result.length()) return false;
+        if (original.length() == 0) return true;
+        String kmp = original + original;
+        if (kmp.contains(result)) {
+            return true;
+        }
+        return false;
     }
 
-    private boolean isSubstring(String complete, String sub) {
-        return complete.contains(sub);
+    boolean rotatedBruteForced(String original, String result) {
+        if (original.length() != result.length()){ return false; }
+        if (result.length() == 0) return true;
+
+        String comparator = original;
+        for (int i = 0; i < original.length(); i++) {
+            char c = comparator.charAt(0);
+            comparator = comparator.substring(1) + c;
+            if (comparator.equals(result)) return true;
+        }
+        return false;
     }
 }

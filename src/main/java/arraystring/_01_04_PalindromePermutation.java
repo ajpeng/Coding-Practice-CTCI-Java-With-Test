@@ -1,7 +1,7 @@
 package arraystring;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Given a string, write a function to check if it is a permutation of a palindrome.
@@ -15,12 +15,16 @@ import java.util.Set;
  */
 class _01_04_PalindromePermutation {
     boolean check(String s) {
-        Set<Character> set = new HashSet<>();
+        HashMap<Character, Integer> hashMap = new HashMap<>();
         for (char c : s.toCharArray()) {
-            if (c == ' ') continue;
-            if (set.contains(c)) set.remove(c);
-            else set.add(c);
+            if (c != ' ')  hashMap.put(c, hashMap.getOrDefault(c, 0) + 1);
         }
-        return set.size() < 2;
+
+        boolean oddFlag = false;
+        for (Map.Entry<Character, Integer> entry : hashMap.entrySet()) {
+            if (oddFlag && entry.getValue() % 2 == 1) return false;
+            if (entry.getValue() % 2 == 1)  oddFlag = true;
+        }
+        return true;
     }
 }

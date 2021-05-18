@@ -8,15 +8,20 @@ package arraystring;
  */
 class _01_06_StringCompression {
     String compress(String s) {
-        StringBuilder sb = new StringBuilder();
-        int count = 0;
-        for (int i = 0; i < s.length(); i++) {
-            count++;
-            if (i == s.length() - 1 || s.charAt(i) != s.charAt(i + 1)) {
-                sb.append(count).append(s.charAt(i));
-                count = 0;
+        StringBuilder s1 = new StringBuilder();
+        char c = s.charAt(0);
+        int count = 1;
+        for (int i = 1; i < s.length(); i++) {
+            if (c == s.charAt(i)) {
+                count++;
+            } else {
+                s1.append(count).append(c);
+                c = s.charAt(i);
+                count = 1;
             }
         }
-        return sb.length() < s.length() ? sb.toString() : s;
+        s1.append(count).append(c);
+        return s1.length() < s.length() ? s1.toString() : s;
+
     }
 }

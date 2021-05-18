@@ -13,38 +13,26 @@ package arraystring;
  */
 class _01_05_OneAway {
     boolean isOneAway(String a, String b) {
-        if (a.length() == b.length()) {
-            return oneReplace(a, b);
-        } else if (a.length() - b.length() == 1) {
-            return oneInsertion(a, b);
-        } else if (b.length() - a.length() == 1) {
-            return oneInsertion(b, a);
-        } else {
-            return false;
-        }
-    }
+        if (a == null && b == null) return true;
+        if (a == null) return b.length() <= 1;
+        if (b == null) return a.length() <= 1;
+        if (Math.abs(a.length() - b.length()) > 1) return false;
+        int[] flags = new int[256];
 
-    private boolean oneInsertion(String longStr, String shortStr) {
-        boolean insert = false;
-        for (int i = 0, j = 0; i < shortStr.length(); i++, j++) {
-            if (shortStr.charAt(i) != longStr.charAt(j)) {
-                if (insert) return false;
-                insert = true;
-                i--;
+        for (int i = 0; i < a.length() ; i++) {
+            flags[a.charAt(i)]++;
+        }
+        for (int i = 0; i < b.length() ; i++) {
+            flags[b.charAt(i)]--;
+        }
+        int diff = 0;
+        for (int i = 0; i < flags.length; i++) {
+            if (flags[i] > 1 || flags[i] < -1) {
+                return false;
             }
-        }
+            if (flags[i] != 0) diff++;
 
-        return true;
-    }
-
-    private boolean oneReplace(String a, String b) {
-        boolean replace = false;
-        for (int i = 0; i < a.length(); i++) {
-            if (a.charAt(i) != b.charAt(i)) {
-                if (replace) return false;
-                replace = true;
-            }
         }
-        return true;
+        return diff == 0 || diff == 1 || diff == 2 ;
     }
 }
