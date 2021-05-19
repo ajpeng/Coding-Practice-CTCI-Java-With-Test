@@ -17,7 +17,7 @@ This repo includes two git branches:
 
 To get started, please follow the steps below:
 1. Fork this repository
-2. Checkout `practice` branch to solve problems
+2. Checkout `blind-practice` branch to solve problems
 3. Compare with the reference. For instance，you want to check the optimal solution for `IsUnique`
 
     ```git diff master -- src/main/java/arraystring/_01_01_IsUnique.java```
