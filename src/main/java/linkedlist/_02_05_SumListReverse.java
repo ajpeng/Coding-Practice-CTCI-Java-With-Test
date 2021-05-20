@@ -1,5 +1,7 @@
 package linkedlist;
 
+import java.util.List;
+
 /**
  * Sum Lists: You have two numbers represented by a linked list,
  * where each node contains a single digit.
@@ -12,6 +14,27 @@ package linkedlist;
  */
 class _02_05_SumListReverse {
     LinkedListNode sum(LinkedListNode l1, LinkedListNode l2) {
-        throw new UnsupportedOperationException();
+        if (l1 == null ) return l2;
+        if (l2 == null ) return l1;
+        int carry = 0;
+        LinkedListNode dummy = new LinkedListNode(-1);
+        LinkedListNode total = dummy;
+        int sum;
+        while (l1 != null && l2 != null) {
+             sum = carry + l1.val + l2.val;
+            if (sum > 9) {
+                carry = 1;
+            } else {
+                carry = 0;
+            }
+            total.next = new LinkedListNode(sum % 10 );
+            l1 = l1.next;
+            l2 = l2.next;
+            total = total.next;
+        }
+        if (carry > 0) {
+            total.next = new LinkedListNode(carry );
+        }
+        return dummy.next;
     }
 }
