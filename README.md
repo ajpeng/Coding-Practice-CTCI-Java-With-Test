@@ -12,8 +12,8 @@ However, Ctci doesn't come with tests. This repo attempts to fill this gap by ad
 # Get started
 
 This repo includes two git branches:
-- **practice**: Only tests are provided. It's up to you to find a solution.
-- **master**: Both tests and solutions are provided. Compare yours with mine.
+- **main**: Both tests and only optimal solutions are provided. Compare yours with mine.
+- **blind-practice**: Both tests and solutions are provided. Non-optimal but more intuitive solutions are also provided.
 
 To get started, please follow the steps below:
 1. Fork this repository
@@ -26,5 +26,4 @@ To get started, please follow the steps below:
     
 # Keep practicing
 
-Don't worry if you stuck on questions. When it happens, go out for a walk, eat an ice cream
-or send me a [tweet](https://twitter.com/mhuiwang). Come back later when you feel better. The most important thing is that you keep practicing.
+Don't worry if you stuck on questions. Come back later when you feel better. The most important thing is that you keep practicing.
