@@ -13,11 +13,11 @@ However, Ctci doesn't come with tests. This repo attempts to fill this gap by ad
 
 This repo includes two git branches:
 - **main**: Both tests and only optimal solutions are provided. Compare yours with mine.
-- **blind-practice**: Both tests and solutions are provided. Non-optimal but more intuitive solutions are also provided.
+- **practice-solution**: Both tests and solutions are provided. Non-optimal but more intuitive solutions are also provided.
 
 To get started, please follow the steps below:
 1. Fork this repository
-2. Checkout `blind-practice` branch to solve problems
+2. Checkout `practice-solution` branch to solve problems
 3. Compare with the reference. For instance，you want to check the optimal solution for `IsUnique`
 
     ```git diff master -- src/main/java/arraystring/_01_01_IsUnique.java```
