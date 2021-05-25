@@ -1,11 +1,13 @@
 package linkedlist;
 
+import java.util.Stack;
+
 /**
  * Palindrome: Implement a function to check if a linked list is a palindrome.
  */
 class _02_06_Palindrome {
-    // reverse and compare sol
-    boolean isPalindrome(LinkedListNode head) {
+    // reverse and compare solutions
+    boolean isPalindromeBrute(LinkedListNode head) {
         LinkedListNode reversed = reverseLL(head);
         while (head != null) {
             if (head.val != reversed.val) {
@@ -26,6 +28,28 @@ class _02_06_Palindrome {
             node = node.next;
         }
         return head;
+    }
+
+    boolean isPalindrome(LinkedListNode head) {
+        Stack<Integer> stack = new Stack<>();
+        LinkedListNode slow = head;
+        LinkedListNode fast = head;
+        while (fast != null && fast.next != null) {
+            stack.add(slow.val);
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        // skipping middle value of palindrome
+        if (fast != null) {
+            slow = slow.next;
+        }
+
+        while (slow != null) {
+            if (slow.val != stack.pop()) return false;
+            slow = slow.next;
+        }
+        return true;
     }
 
 
