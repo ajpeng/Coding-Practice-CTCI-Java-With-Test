@@ -49,7 +49,11 @@ public class LinkedListNode {
 
     @Override
     public int hashCode() {
-        return Objects.hash(val, next);
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((next == null) ? 0 : next.hashCode());
+        result = prime * result + val;
+        return result;
     }
 
 }
