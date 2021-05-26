@@ -16,6 +16,30 @@ import java.util.HashSet;
 class _02_08_LoopDetection {
 
     LinkedListNode detect(LinkedListNode head) {
+        LinkedListNode slow = head;
+        LinkedListNode fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast) {
+                break;
+            }
+        }
+
+        if (fast == null || fast.next == null) return null;
+
+        fast = head;
+        while (fast != slow ) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+        return slow;
+    }
+
+    // Has issues handling recursive cases
+    LinkedListNode detect2(LinkedListNode head) {
         HashSet<LinkedListNode> set = new HashSet<>();
         while (head != null) {
             if (set.contains(head)) {

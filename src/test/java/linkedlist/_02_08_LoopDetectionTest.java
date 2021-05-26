@@ -29,8 +29,7 @@ public class _02_08_LoopDetectionTest {
     @Test
     public void testWithLoop_FromListTail() {
         LinkedListNode list = LinkedListNode.of(1, 2, 3, 4, 5);
-        LinkedListNode tail = list.next.next.next.next;
-        tail.next = tail;
+        list.next.next.next.next.next = list.next.next.next.next;
         assertEquals(5, s.detect(list).val);
     }
 
