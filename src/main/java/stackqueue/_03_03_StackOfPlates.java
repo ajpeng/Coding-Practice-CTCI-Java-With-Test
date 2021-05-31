@@ -20,7 +20,7 @@ class _03_03_StackOfPlates {
 
     void push(int val) {
         Stack<Integer> stack = getLastStack();
-        if (stack.size() + 1 < threshold) {
+        if (stack.size() + 1 <= threshold) {
             stack.push(val);
         } else {
             Stack<Integer> newStack = new Stack<Integer>();
@@ -30,11 +30,11 @@ class _03_03_StackOfPlates {
     }
 
     int pop(){
-        Stack last = getLastStack();
-        if (last == null) {
+        Stack<Integer> last = getLastStack();
+        if (last == null ) {
             // do nothing or throw error//
         }
-        int result = (int) last.pop();
+        int result = last.pop();
         if (last.size() == 0) {
             removeEmptyStack();
         }
@@ -42,7 +42,23 @@ class _03_03_StackOfPlates {
     }
 
     int popAt(int stackNum) {
-        throw new UnsupportedOperationException();
+        int val;
+        if (stackNum > stacks.size()) System.out.println("Cannot pop at " + stackNum + ". No such stack exists.");
+            val = stacks.get(stackNum).pop();
+            // we need to grab el at top of stackNum and replace it with bottom of stackNum + 1 until no more stacks
+            for (int i = stackNum; i < stacks.size(); i++) {
+                if (i + 1 < stacks.size()) {
+                    Stack<Integer> nextStack = stacks.get(i + 1);
+                    // remove element at bottom of stack by copying everything except first el;
+                    if (!nextStack.isEmpty()) {
+                        int valToShift = nextStack.remove(0);
+                        stacks.get(i).push(valToShift);
+                    } else {
+                        removeEmptyStack();
+                    }
+                }
+            }
+        return val;
     }
 
     // helper functions

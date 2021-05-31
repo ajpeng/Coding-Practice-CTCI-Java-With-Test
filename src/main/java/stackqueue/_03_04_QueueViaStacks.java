@@ -1,21 +1,36 @@
 package stackqueue;
 
+import java.util.Stack;
+
 class _03_04_QueueViaStacks {
+    Stack<Integer> stackNewest = new Stack<>();
+    Stack<Integer> stackOldest = new Stack<>();
 
-
+    // add item to queue
     void enqueue(int val) {
+        stackNewest.add(val);
     }
 
     int size() {
-        throw new UnsupportedOperationException();
+        return stackNewest.size() + stackOldest.size();
     }
 
     int peek() {
-        throw new UnsupportedOperationException();
+        shiftStacks();
+        return stackOldest.peek();
     }
 
     int dequeue() {
-        throw new UnsupportedOperationException();
+        shiftStacks();
+        return stackOldest.pop();
+    }
+
+    private void shiftStacks() {
+        if (stackOldest.isEmpty()) {
+            while (!stackNewest.isEmpty()) {
+                stackOldest.push(stackNewest.pop());
+            }
+        }
     }
 
 
